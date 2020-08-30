@@ -20,6 +20,8 @@ document.getElementById("logout").onclick = () => {
   remote.getCurrentWindow().close();
 };
 
+
+
 function updateCapacity()
 {
     var full = document.getElementById("form_full").value;
