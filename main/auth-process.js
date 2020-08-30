@@ -11,7 +11,7 @@ function createAuthWindow() {
 
   win = new BrowserWindow({
     width: 1000,
-    height: 600,
+    height: 800,
     webPreferences: {
       nodeIntegration: false,
       enableRemoteModule: false

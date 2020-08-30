@@ -13,6 +13,7 @@ function createAppWindow() {
   });
 
   win.loadFile("./renderers/dashboard.html");
+  win.maximize();
 
   win.on("closed", () => {
     win = null;
