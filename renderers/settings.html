@@ -82,7 +82,7 @@
                           <button type="button" class="btn btn-secondary" onclick="minusCurrent()">-1 </button>
                         </div>
                         <div class="col-5">
-                          <input class="form-control" type="number" id="form_DashCurrent" value="150" readonly>
+                          <input class="form-control" type="number" id="form_DashCurrent"  readonly>
                         </div>
                         <div class="col">
                           <button type="button" class="btn btn-primary" onclick="addCurrent()"> +1 </button>
@@ -99,8 +99,8 @@
                         </div>
                       </div>
                     </div>
-                </a>
-              </li>
+                  </a>
+                </li>
             </span>
             </ul>
 
@@ -147,7 +147,7 @@
             
                 <div class="col-md-1 mb-3">
                     <label for="form_full">Full:</label>
-                    <input type="number" class="form-control" id="form_full"  value="500" readonly>
+                    <input type="number" class="form-control" id="form_full"  value="500" >
                 </div>
                 
                 <div class="col-md-1 mb-3">
@@ -160,14 +160,7 @@
                     <label for="form_pandMax">Pandemic Max:</label>
                     <input type="number" class="form-control" id="form_pandMax"  value="250" readonly>
                 </div>
-              
-                <div class="col-md-1 mb-3">
-                    <label for="form_current">Current:</label>
-                    <input type="number" class="form-control is-invalid" id="form_current"  readonly>
-                    <div class="invalid-feedback">
-                    Almost Full!
-                    </div>
-                </div>
+
 
             </div>
             <h2 class="h4">Building Information</h2>
@@ -194,7 +187,7 @@
                 <div class="col-md-1 mb-3"></div>
                 <div class="col-md-1 mb-3"></div>
                 <div class="col-md-1 mb-3"></div>
-                <button class="btn btn-primary" type="submit">Save Settings</button>
+                <button class="btn btn-primary" type="submit" onclick="saveSettings()">Save Settings</button>
             </div>
             
           </form>

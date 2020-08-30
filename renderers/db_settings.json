@@ -1,3 +1,11 @@
 {
-  "db_settings": []
+  "db_settings": [
+    {
+      "cap_Full": "500",
+      "cap_Allowed": "54",
+      "cap_PandMax": "270",
+      "cap_Current": "250",
+      "id": 1598802039309
+    }
+  ]
 }

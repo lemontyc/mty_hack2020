@@ -48,6 +48,8 @@ var pandMax;
       document.getElementById("dash_Alert").innerText = "MAX capacity reached!"
       document.getElementById("dash_Alert").className = "alert alert-danger"
     }
+
+    saveCurrent();
   }
   
 function checkwarning()
@@ -72,4 +74,5 @@ function checkwarning()
     {
       document.getElementById("form_DashCurrent").value = 0
     }
+    saveCurrent();
   }
