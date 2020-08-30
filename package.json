@@ -6,7 +6,11 @@
   "directories": {
     "doc": "docs"
   },
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.20.0",
+    "jwt-decode": "^2.2.0",
+    "keytar": "^6.0.1"
+  },
   "devDependencies": {
     "electron": "^10.1.0"
   },
