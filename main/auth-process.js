@@ -14,12 +14,13 @@ function createAuthWindow() {
     height: 800,
     webPreferences: {
       nodeIntegration: false,
-      enableRemoteModule: false
+      enableRemoteModule: false,
     }
   });
 
   win.loadURL(authService.getAuthenticationURL());
-
+  win.setMenu(null);
+  
   const {session: {webRequest}} = win.webContents;
 
   const filter = {

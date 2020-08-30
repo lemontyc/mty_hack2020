@@ -68,9 +68,9 @@
 
               <span class="border">
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">
+                  <a class="nav-link" href="dashboard.html">
                     <span data-feather="home"></span>
-                    Dashboard <span class="sr-only">(current)</span>
+                    Dashboard <span class="sr-only"></span>
                   </a>
                 </li>
 
@@ -79,13 +79,13 @@
                     <div class="container">
                       <div class="row">
                         <div class="col">
-                          <button type="button" class="btn btn-secondary">-1 </button>
+                          <button type="button" class="btn btn-secondary" onclick="minusCurrent()">-1 </button>
                         </div>
                         <div class="col-5">
-                          <input class="form-control" type="text" placeholder="0" readonly>
+                          <input class="form-control" type="number" id="form_DashCurrent" value="150" readonly>
                         </div>
                         <div class="col">
-                          <button type="button" class="btn btn-primary"> +1 </button>
+                          <button type="button" class="btn btn-primary" onclick="addCurrent()"> +1 </button>
                         </div>
                       </div>
                       
@@ -93,7 +93,7 @@
 
                       <div class="row">
                         <div class="col">
-                          <div class="alert alert-warning" role="alert">
+                          <div class="alert alert-warning" id="dash_Alert" role="alert">
                             Almost Full!
                           </div>
                         </div>
@@ -125,8 +125,8 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="settings.html">
-                  <span data-feather="settings"></span>
+                <a class="nav-link active" href="#">
+                  <span data-feather="settings">(current)</span>
                   Settings
                 </a>
               </li>
@@ -136,21 +136,68 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Dashboard</h1>
-            <div class="btn-toolbar mb-2 mb-md-0">
-              <div class="btn-group mr-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-              </div>
-              <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                <span data-feather="calendar"></span>
-                This week
-              </button>
-            </div>
+            <h1 class="h2">Settings</h1>
           </div>
 
-          <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+          <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
+          <h2 class="h4">Capacity</h2>
+          <p>Can be changed by modifying the building layout or the furniture</p>
+          <form>
+            <div class="form-row">
+            
+                <div class="col-md-1 mb-3">
+                    <label for="form_full">Full:</label>
+                    <input type="number" class="form-control" id="form_full"  value="500" readonly>
+                </div>
+                
+                <div class="col-md-1 mb-3">
+                    <label for="form_allowed">Allowed [%]:</label>
+                    <input type="number" class="form-control" id="form_allowed"  value="50" onchange="updateCapacity()" >
+                </div>
 
+                <div class="col-md-1 mb-3"></div>
+                <div class="col-md-1 mb-3">
+                    <label for="form_pandMax">Pandemic Max:</label>
+                    <input type="number" class="form-control" id="form_pandMax"  value="250" readonly>
+                </div>
+              
+                <div class="col-md-1 mb-3">
+                    <label for="form_current">Current:</label>
+                    <input type="number" class="form-control is-invalid" id="form_current"  readonly>
+                    <div class="invalid-feedback">
+                    Almost Full!
+                    </div>
+                </div>
+
+            </div>
+            <h2 class="h4">Building Information</h2>
+
+            <div class="form-row">
+              <div class="col-md-1 mb-3">
+                <label for="form_globalDist">Global Distance[m]</label>
+                <input type="number" class="form-control " id="form_globalDist" value="1.5" readonly>
+              </div>
+              <div class="col-md-1 mb-3"></div>
+              <div class="col-md-1 mb-3"></div>
+              <div class="col-md-1 mb-3">
+                <label for="form_buildingSM">Building m<sup>2</sup></label>
+                <input type="number" class="form-control" id="form_buildingSM" value="1.5"  readonly>
+              </div>
+              <div class="col-md-1 mb-3">
+                <label for="form_peoplePSM">People per m<sup>2</sup></label>
+                <input type="number" class="form-control" id="form_peoplePSM" value="1.5"  readonly>
+              </div>
+            </div>
+            <br>
+            <div class="form-row">
+                <div class="col-md-1 mb-3"></div>
+                <div class="col-md-1 mb-3"></div>
+                <div class="col-md-1 mb-3"></div>
+                <div class="col-md-1 mb-3"></div>
+                <button class="btn btn-primary" type="submit">Save Settings</button>
+            </div>
+            
+          </form>
 
         </main>
       </div>
@@ -160,8 +207,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script>window.jQuery || document.write('<script src="../assets/dist/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/feather-icons"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
   <script src="../assets/dashboard.js"></script></body>
 
-  <script src="home.js"></script>
+  <script src="settings.js"></script>
 </html>
