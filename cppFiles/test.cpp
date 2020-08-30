@@ -27,7 +27,7 @@ int main(){
         
     }
 
-    myseats.push(std::pair<int,int>((n/2),(n/2)));
+    myseats.push(std::pair<int,int>((n/2),(m/2)));
 
     seats[n/2][n/2] = counter++;
     p--;
