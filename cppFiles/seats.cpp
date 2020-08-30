@@ -13,19 +13,22 @@ int position(int i,int j,int n,int m){
 }
 
 
-int seatsFunctions(std::vector<int>& originalVector, int percentage, int n, int m){
+int seatsFunctions(std::vector<char>& originalVector, int percentage, int n, int m, bool second){
    
     std::stack<int> seats; 
-    int center = position(n/2,m/2,n,m);
+    int center = 0;
+    if (!second)
+        center = position(n/2,m/2,n,m);
+    else
+        center = position((n+1)/2,(m+1)/2,n,m);
+    
     int currentSeat = 0;
-    int counter = 1;
+
 
     seats.push(center);
-    originalVector[center] = counter++;
-    std::cout << "holix" << originalVector[center] << std::endl;
-    std::cout << "holox" << center << std::endl;
-
-    percentage--;
+    originalVector[center] = 0x20;
+    percentage --;
+    
 
     while (!seats.empty() && percentage > 0)
     {
@@ -33,31 +36,39 @@ int seatsFunctions(std::vector<int>& originalVector, int percentage, int n, int 
         seats.pop();
         
         // bottom seat
-        if ((currentSeat + (2*m) ) <= originalVector.size() && originalVector[currentSeat] == 0 && percentage > 0)
+        if ((currentSeat + (2*m) ) <= originalVector.size() && originalVector[currentSeat + (2*m)] == 0x58 && percentage > 0)
         {
-            originalVector[currentSeat + (2*m) ] = counter++;
+            originalVector[currentSeat + (2*m) ] = 0x20;
             seats.push(currentSeat + (2*m));
+            percentage --;
+
         }
         
         // right seat
-        if ((currentSeat/m) == ((currentSeat+2)/m) && originalVector[currentSeat] == 0 && percentage > 0)
+        if ((currentSeat/m) == ((currentSeat+2)/m) && originalVector[currentSeat+2] == 0x58 && percentage > 0)
         {
-            originalVector[currentSeat+2] = counter++;
+            originalVector[currentSeat+2] = 0x20;
             seats.push(currentSeat+2);
+            percentage --;
+            
         }
 
         // up seat
-        if (((currentSeat/m)) == ((currentSeat-2)/m) && originalVector[currentSeat] == 0 && percentage > 0)
+        if (((currentSeat/m)) == ((currentSeat-2)/m) && originalVector[currentSeat-2] == 0x58 && percentage > 0)
         {
-            originalVector[currentSeat-2] = counter++;
+            originalVector[currentSeat-2] = 0x20;
             seats.push(currentSeat-2);
+            percentage --;
+
         }
 
         // left seat
-        if ((currentSeat - (2*m) ) >= 0 && originalVector[currentSeat] == 0 && percentage > 0)
+        if ((currentSeat - (2*m) ) >= 0 && originalVector[currentSeat - (2*m)] == 0x58 && percentage > 0)
         {
-            originalVector[currentSeat - (2*m)] = counter++;
+            originalVector[currentSeat - (2*m)] = 0x20;
             seats.push(currentSeat - (2*m));
+            percentage --;
+
         }
         
         // Brecking loop and returning 0
@@ -77,13 +88,15 @@ int main(){
 
     std::cin >> n >> m >> p;
 
-    std::vector<int> myseats (n*m,0);
+    std::vector<char> myseats (n*m,0x58);
 
-    int aux = seatsFunctions(myseats,p,n-1,m-1);
+    p = (p * m* n) / 100;
+
+    int aux = seatsFunctions(myseats,p,n,m,false);
 
     if (aux > 0)
     {
-        seatsFunctions(myseats,aux,n,m);
+        seatsFunctions(myseats,aux,n,m,true);
     }
 
     for (int i = 0; i < n; i++)
